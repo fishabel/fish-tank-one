@@ -1,9 +1,8 @@
 # https://data.austintexas.gov/City-Government/Final-Report-of-the-Asian-American-Quality-of-Life/hc5t-p62z
-setwd('/Users/abelng/Desktop/2021fall/CS699 Data Mining/Project Assignment')
+setwd("C:/Users/abel/Desktop/Github/fish-tank-one")
 library(dplyr)
 testdata <- data.frame(read.csv('Final_Report_of_the_Asian_American_Quality_of_Life__AAQoL_.csv'))
-testclean <- na.omit(testdata)
-testcleanfinal <- testclean[,1:93]
+testcleanfinal <- testdata[,1:93]
 testattributes <- c("Age","Gender","Ethnicity","Marital.Status","Education.Completed","Household.Size",
                     "Income","US.Born","Duration.of.Residency","Primary.Language","English.Speaking",
                     "English.Difficulties","Familiarity.with.America","Familiarity.with.Ethnic.Origin",
@@ -15,6 +14,8 @@ employment <- c("Full.Time.Employment","Part.Time.Employment","Self.Employed.Ful
                 "Other.Employment.Description")
 
 a1 <- select(testcleanfinal,testattributes)
+a1[a1 ==''] <- NA
+a1 <- na.omit(a1)
 
 # Add the class attribute Life.Quality
 a1 <- a1 %>%
@@ -26,4 +27,4 @@ a1 <- a1 %>%
                                   TRUE ~ 'Fair'))
 
 
-write.csv(a1,"/Users/abelng/Desktop/2021fall/CS699 Data Mining/Project Assignment/AAQoLsurveyclean.csv", row.names = FALSE)
+write.csv(a1,"C:/Users/abel/Desktop/Github/fish-tank-one/AAQoLsurveyclean.csv", row.names = FALSE)
